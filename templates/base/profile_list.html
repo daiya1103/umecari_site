@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<h1>プロフィールリスト</h1>
+<hr>
+
+{% for profile in object_list %}
+    <a href="{% url 'base:profile-detail' profile.pk %}">
+        <div>
+            {% if profile.icon %}
+                <img src="{{ profile.icon.url }}" alt=""  class="list-icon">
+            {% else %}
+                <img src="{% static 'base/images/default-icon.svg' %}" class="list-icon">
+            {% endif %}
+            {{profile.name}}
+        </div>
+    </a>
+    <hr>
+{% endfor %}
+
+{% endblock %}

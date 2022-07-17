@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="switch-btn-container">
+    <a href="{% url 'base:nippou-list' %}">
+        <div id="nippou-btn" class="switch-btn">日報</div>
+    </a>
+    <a href="{% url 'base:output-list' %}">
+        <div id="output-btn" class="switch-btn">アウトプット</div>
+    </a>
+</div>
+
+<div class='nippou-list'>
+    {% for nippou in object_list %}
+    <hr>
+    <table>
+        <h2>{{nippou.date}}の日報</h2>
+        <small>投稿者 : <a href="{% url 'base:profile-detail' nippou.user.pk %}">{{ nippou.user.profile.name }}</a></small>
+        <p>販売個数 : {{nippou.sales}}個</p>
+        <p>日利 : {{nippou.revenue}}円</p>
+        <p>その他</p>
+        <p>{{nippou.plan}}</p>
+    </table>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="switch-btn-container">
+    <a href="{% url 'base:nippou-list' %}">
+        <div id="nippou-btn" class="switch-btn">日報</div>
+    </a>
+    <a href="{% url 'base:output-list' %}">
+        <div id="output-btn" class="switch-btn">アウトプット</div>
+    </a>
+</div>
+
+<div class="search_box col-sm-1">
+    <form action="" method="get">
+        <input name="query" value="{{ request.GET.query }}" type="text" placeholder="気になることを検索">
+    </form>
+</div>
+<div class="pt-2">
+    {% for tag in tags %}
+        <span class="badge rounded-pill bg-light text-dark m-1">
+            <a href="{%url 'base:tagoutput-list' tag.slug %}" class="text-decoration-none text-reset">
+                {{ tag.tag }}
+            </a>
+        </span>
+    {% endfor %}
+</div>
+<hr>
+{% for output in object_list %}
+<div>
+    <small>
+    <a href="{% url 'base:profile-detail' output.user.pk %}">
+        {{ output.user.profile.name }}
+    </a>
+    </small>
+</div>
+<a href="{% url 'base:output-detail' output.pk %}">{{output.question | truncatechars:30}}</a>
+<hr>
+{% endfor %}
+
+{% endblock %}

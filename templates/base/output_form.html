@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>アウトプット</h1>
+<form method="post" class="p-4 m-4 bg-light border border-success roundedform-group">
+    {% csrf_token %}
+    <label>質問</label>
+    <textarea class="form-control" type="text" name="question">{{ output.question }}</textarea>
+    <label>アウトプット</label>
+    <textarea class="form-control" type="text" name="description">{{ output.description }}</textarea>
+
+    <button type="submit" class="btn btn-success mt-4">提出</button>
+</form>
+
+{% endblock %}

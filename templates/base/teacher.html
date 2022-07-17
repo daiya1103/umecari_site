@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>講師専用ページ</h1>
+
+{% if students %}
+
+{% for student in students %}
+
+<a href="{% url 'base:profile-detail' student.pk %}">
+    {{ student.profile.name }}
+</a>
+
+{% endfor %}
+
+{% else %}
+
+まだ生徒がいません．
+
+{% endif %}
+
+{% endblock %}

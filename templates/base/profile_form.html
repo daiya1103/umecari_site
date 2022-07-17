@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>プロフィールを変更</h1>
+<form method="post" class="p-4 m-4 bg-light roundedform-group" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>アイコン</label>
+    <input class="form-control" type="file" name="icon" id="upload_icon">
+    <div id="profileImage_croppie"></div>
+    <label>ニックネーム</label>
+    <input class="form-control" type="text" name="name" value="{{ user.profile.name }}">
+    <label>自己紹介</label>
+    <textarea class="form-control" type="text" name="introduction">{{ user.profile.introduction }}</textarea>
+    <label>目標金額</label>
+    <div class="col-auto">
+        <input type="number" class="form-control" name="target" value="{{ user.profile.target }}">
+    </div>
+    <label>ビジョンボード</label>
+    <input class="form-control" type="file" name="dream" value="{{ user.profile.dream }}">
+    <button type="submit" class="btn btn-success mt-4">プロフィールを変更</button>
+</form>
+{% endblock %}

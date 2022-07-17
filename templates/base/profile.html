@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<div class="container">
+    「{{profile.name}}」さんのプロフィール
+</div>
+<div class="row">
+    <div class="col-lg-6 main-content">
+        <div class="row">
+            <div class="col-lg-6 p-4">
+                <div class="row">
+                    <div class="col-4 col-lg-12">
+                        {% if profile.icon %}
+                        <img src="{{ profile.icon.url }}" alt=""  class="icon d-block mx-auto">
+                        {% else %}
+                        <img src="{% static 'base/images/default-icon.svg' %}" class="icon d-block mx-auto">
+                        {% endif %}
+                    </div>
+                    <div class="col-8 col-lg-12">
+                        <h3 class="pt-2">{{profile.name}}</h3>
+                        {% if profile.introduction %}
+                            <p class="pt-3">{{profile.introduction}}</p>
+                        {% else %}
+                            <p class="pt-3">未設定</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 p-4 align-items-center">
+                <p class="text-center">ビジョンボード</p>
+                {% if profile.dream %}
+                <img src="{{ profile.dream.url }}" alt="" class="visionboard d-block mx-auto">
+                {% else %}
+                <img src="{% static 'base/images/default-icon.svg' %}" class="visionboard d-block mx-auto">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 sub-content">
+        <div class="p-3">
+            <p>
+                今日は{% now 'Y' %}年{% now 'n' %}月{% now 'd' %}日です。
+            </p>
+            <p>
+                担当講師: {{ profile.user.teacher.profile.name }}先生
+            </p>
+            {% if profile.target == 0 %}
+            <p>目標金額を設定してください</p>
+            {% else %}
+            <p>
+                目標金額: {{profile.target}}円
+            </p>
+            <p>
+                本日までの合計利益: {{sum_of_revenue}}円
+            </p>
+            <div id="progressOfTarget"></div>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}
