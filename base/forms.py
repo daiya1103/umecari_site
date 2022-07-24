@@ -3,7 +3,7 @@ sys.dont_write_bytecode = True
 
 from django import forms
 from django.contrib.auth import get_user_model
-from .models import Profile
+from .models import Profile, PlanReply
 
 class UserCreationForm(forms.ModelForm):
     password = forms.CharField()
@@ -32,4 +32,17 @@ class ProfileForm(forms.ModelForm):
             'introduction',
             'target',
             'dream',
+        )
+
+class PlanReplyForm(forms.ModelForm):
+    class Meta:
+        model = PlanReply
+        fields = (
+            'entry',
+            'party',
+            'status',
+            'desired',
+            'question',
+            'to_ayaka',
+            'others',
         )

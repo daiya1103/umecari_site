@@ -35,7 +35,7 @@
     </div>
 
     <div class="col-lg-6 sub-content">
-        <div class="p-3">
+        <div class="p-3 column">
             <p>
                 今日は{% now 'Y' %}年{% now 'n' %}月{% now 'd' %}日です。
             </p>
@@ -74,29 +74,28 @@
         <a href="{% url 'base:nippou-create' %}">
             <img src="{% static 'base/images/nippou.png' %}" class="menu-icon">
         </a>
-    </div>
-    <div class="col-6 col-lg-4 link-box">
-        <a href="{% url 'base:output-create' %}">
-            <img src="{% static 'base/images/output.png' %}" class="menu-icon">
-        </a>
-    </div>
-</div>
-<div class="row">
-    <div class="col-6 col-lg-4 link-box">
         <a href="https://ume-school.com/">
             <img src="{% static 'base/images/content.png' %}" class="menu-icon">
         </a>
     </div>
     <div class="col-6 col-lg-4 link-box">
+        <a href="{% url 'base:output-create' %}">
+            <img src="{% static 'base/images/output.png' %}" class="menu-icon">
+        </a>
         <a href="{% url 'base:nippou-list' %}">
             <img src="{% static 'base/images/Q&A.png' %}" class="menu-icon">
         </a>
+    </div>
+    <div class="col-lg-4 plan-field">
+        {% for plan in plans %}
+            <a href="{% url 'base:plan-detail' plan.pk %}">{{plan.title}}</a>
+        {% endfor %}
     </div>
 </div>
 {% endif %}
 <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.js"></script>
 
-{% if user.profile.target == 0 %}
+{% if user.profile.target %}
     <script>
         var bar = new ProgressBar.Line(progressOfTarget, {
             strokeWidth: 4,

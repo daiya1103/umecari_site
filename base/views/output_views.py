@@ -4,13 +4,10 @@ sys.dont_write_bytecode = True
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth.views import LoginView
 from django.views.generic import ListView, CreateView, DetailView
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-from base.forms import ProfileForm
-from base.models import User, Profile, Output, OutputTagModel
+from base.models import Output, OutputTagModel
 
 class OutputListView(LoginRequiredMixin, ListView):
     model = Output

@@ -11,7 +11,6 @@ from .views import (
     profileform,
     ProfileListView,
     ProfileDetailView,
-    profileImageUpload,
     NippouListView,
     NippouCreateView,
     OutputListView,
@@ -19,6 +18,7 @@ from .views import (
     OutputCreateView,
     OutputDetailView,
     StudentListView,
+    PlanReplyView
 )
 app_name = 'base'
 
@@ -27,7 +27,6 @@ urlpatterns = [
     path('login/', MyLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('profile/edit', profileform, name='profile'),
-    path('profile/icon/upload', profileImageUpload, name='icon-upload'),
     path('member/', ProfileListView.as_view(), name='profile-list'),
     path('member/<int:pk>/', ProfileDetailView.as_view(), name='profile-detail'),
     path('nippou/', NippouListView.as_view(), name='nippou-list'),
@@ -37,4 +36,5 @@ urlpatterns = [
     path('output/new/', OutputCreateView.as_view(), name='output-create'),
     path('output/detail/<int:pk>/', OutputDetailView.as_view(), name='output-detail'),
     path('teacher/', StudentListView.as_view(), name='teacher'),
+    path('plan/<int:pk>', PlanReplyView.as_view(), name='plan-detail'),
 ]

@@ -5,31 +5,39 @@
 <h1>日報</h1>
 <form method="post" class="p-4 m-4 bg-light border border-success roundedform-group">
     {% csrf_token %}
-    <label>日付</label>
-    <input class="form-control" type="date" name="date">
-
-    <label>販売個数</label>
-    <div class="col-auto">
-        <input type="number" class="form-control" aria-describedby="passwordHelpInline" name="sales" value=" {{ nippou.sales }} ">
-    </div>
-    <div class="col-auto">
-        <span id="passwordHelpInline" class="form-text">
-            個
-        </span>
+    <div class="py-2">
+        <label>日付</label>
+        <input class="form-control" type="date" name="date">
     </div>
 
-    <label>日利</label>
-    <div class="col-auto">
-        <input type="number" class="form-control" aria-describedby="passwordHelpInline" name="revenue" value=" {{ nippou.revenue }} ">
-    </div>
-    <div class="col-auto">
-        <span id="passwordHelpInline" class="form-text">
-            円
-        </span>
+    <div class="py-2">
+        <label>販売個数</label>
+        <div class="col-auto">
+            <input type="number" class="form-control" aria-describedby="passwordHelpInline" name="sales" value=" {{ nippou.sales }} ">
+        </div>
+        <div class="col-auto">
+            <span id="passwordHelpInline" class="form-text">
+                個
+            </span>
+        </div>
     </div>
 
-    <label>その他</label>
-    <textarea class="form-control" type="text" name="plan">{{ nippou.plan }}</textarea>
+    <div class="py-2">
+        <label>日利</label>
+        <div class="col-auto">
+            <input type="number" class="form-control" aria-describedby="passwordHelpInline" name="revenue" value=" {{ nippou.revenue }} ">
+        </div>
+        <div class="col-auto">
+            <span id="passwordHelpInline" class="form-text">
+                円
+            </span>
+        </div>
+    </div>
+
+    <div class="py-2">
+        <label>その他</label>
+        <textarea class="form-control" type="text" name="plan">{{ nippou.plan }}</textarea>
+    </div>
 
     <button type="submit" class="btn btn-success mt-4">提出</button>
 </form>

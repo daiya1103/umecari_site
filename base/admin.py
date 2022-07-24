@@ -9,6 +9,8 @@ from base.models import (User,
                         Nippou,
                         Output,
                         OutputTagModel,
+                        Plan,
+                        PlanReply
                         )
 
 class ProfileInline(admin.StackedInline):
@@ -62,3 +64,5 @@ admin.site.register(User, CustomUserAdmin)
 admin.site.register(Nippou)
 admin.site.register(Output, OutputAdmin)
 admin.site.register(OutputTagModel)
+admin.site.register(Plan)
+admin.site.register(PlanReply)

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>{{plan.title}}</p>
+<p>{{plan.style}}</p>
+<p>{{plan.zoom_link}}</p>
+<p>{{plan.start_time}}</p>
+<p>{{plan.end_time}}</p>
+<p>{{plan.party_time}}</p>
+<p>{{plan.description}}</p>
+<div class="pt-3">
+    <h3>出席・欠席(必ず提出してください！)</h3>
+    <form method="post" class="px-4 roundedform-group" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="py-2">
+            <label>参加形態</label>
+            <div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="entry" id="inlineRadio1" value="real">
+                    <label class="form-check-label" for="inlineRadio1">参加</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="entry" id="inlineRadio1" value="online">
+                    <label class="form-check-label" for="inlineRadio1">Zoom参加</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="entry" id="inlineRadio1" value="nonentry">
+                    <label class="form-check-label" for="inlineRadio1">欠席</label>
+                </div>
+            </div>
+        </div>
+        <div class="py-2">
+            <label>懇親会</label>
+            <div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="party" id="inlineRadio1" value="entry">
+                    <label class="form-check-label" for="inlineRadio1">参加</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="party" id="inlineRadio1" value="entry">
+                    <label class="form-check-label" for="inlineRadio1">欠席</label>
+                </div>
+            </div>
+        </div>
+        <div class="py-2">
+        <label>状況</label>
+        <input class="form-control" name="status" placeholder="例）メルカリ2ヶ月目、利益5万円（1〜22日）、初月3万円">
+        </div>
+        <div class="py-2">
+        <label>取り上げてほしい内容</label>
+        <input class="form-control" name="desired">
+        </div>
+        <div class="py-2">
+        <label>質問・お悩み</label>
+        <input class="form-control" name="question">
+        </div>
+        <div class="py-2">
+        <label>梅野に聞きたいこと</label>
+        <input class="form-control" name="to_ayaka">
+        </div>
+        <div class="py-2">
+        <label>その他意気込みなど</label>
+        <input class="form-control" name="others">
+        </div>
+        <button type="submit" class="btn btn-success mt-4">更新</button>
+    </form>
+</div>
+
+
+{% endblock %}

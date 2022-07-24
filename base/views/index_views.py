@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
 from django_pandas.io import read_frame
-from base.models import User, Nippou
+from base.models import User, Nippou, Plan
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 import pandas as pd
@@ -26,6 +26,10 @@ class Index(LoginRequiredMixin, ListView):
         else:
             sum_of_revenue = 0
         context['sum_of_revenue'] = sum_of_revenue
+
+        plans = Plan.objects.all()
+        context['plans'] = plans
+
         return context
 
 def login(request):

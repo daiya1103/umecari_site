@@ -1,7 +1,6 @@
 import sys
 sys.dont_write_bytecode = True
 
-import cv2
 import base64
 import numpy as np
 import os
@@ -75,26 +74,3 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
             sum_of_revenue = 0
         context['sum_of_revenue'] = sum_of_revenue
         return context
-
-@login_required
-def profileImageUpload(request):
-    ''' プロフィール編集画面からPOSTされた画像データの保存処理 '''
-    # POSTされたb64データを元の画像データにデコード
-    image_data = base64.b64decode(request.POST.get('image').split(',')[1])
-    image_binary = np.frombuffer(image_data, dtype=np.uint8)
-    image = cv2.imdecode(image_binary, cv2.IMREAD_COLOR)
-    temp_name = 'templateImage.png'
-    cv2.imwrite(temp_name, image)
-
-    # 画像データをリネームして移動
-    dt_now = timezone.now()
-    file_name = '/profileImage/' + str(request.user.pk).zfill(8) + '_' + dt_now.strftime("%Y%m%d%H%M%S") + '.png'
-    os.rename(temp_name, settings.MEDIA_ROOT + file_name)
-
-    # 保存した画像を登録
-    profile = get_object_or_404(Profile, pk=request.user.profile.pk)
-    profile.profileImage = file_name
-    profile.save()
-
-    data = {'imageURL' : profile.profileImage.url}
-    return JsonResponse(data)

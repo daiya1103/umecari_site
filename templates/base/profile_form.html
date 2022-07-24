@@ -7,7 +7,6 @@
     {% csrf_token %}
     <label>アイコン</label>
     <input class="form-control" type="file" name="icon" id="upload_icon">
-    <div id="profileImage_croppie"></div>
     <label>ニックネーム</label>
     <input class="form-control" type="text" name="name" value="{{ user.profile.name }}">
     <label>自己紹介</label>
